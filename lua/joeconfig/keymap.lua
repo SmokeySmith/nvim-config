@@ -1,11 +1,10 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
+-- greatest remap ever
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
--- basic rebinds 
-vim.keymap.set("i","jj", "<Esc>")
--- greatest remap ever
+
 vim.keymap.set("x", "<leader>p", "\"_dP")
 
 vim.keymap.set("n", "<leader>y", "\"+y")
@@ -21,3 +20,9 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>")
 
 
 vim.keymap.set("n", "<leader>e", function() vim.cmd(":NvimTreeToggle") end)
+vim.keymap.set("n", "<leader>bd", function() vim.cmd(":bdelete") end)
+vim.keymap.set("n", "<leader>bq", function() vim.cmd(":q") end)
+vim.keymap.set("n", "<leader>qq", function() vim.cmd(":quitall") end)
+vim.keymap.set("n", "<leader>ll", function() vim.cmd(":Lazy") end)
+vim.keymap.set("n", "<leader>ls", function() vim.cmd(":Lazy sync") end)
+vim.keymap.set("n", "<leader>lh", function() vim.cmd(":Lazy health") end)
