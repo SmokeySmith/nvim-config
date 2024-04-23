@@ -19,7 +19,7 @@ vim.keymap.set("n", "<C-j>", "<C-w><C-j>")
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>")
 
 
-vim.keymap.set("n", "<leader>e", function() vim.cmd(":NvimTreeToggle") end)
+vim.keymap.set("n", "<leader>e", function() vim.cmd(":NvimTreeFindFileToggle") end)
 vim.keymap.set("n", "<leader>bd", function() vim.cmd(":bdelete") end)
 vim.keymap.set("n", "<leader>bq", function() vim.cmd(":q") end)
 vim.keymap.set("n", "<leader>qq", function() vim.cmd(":quitall") end)
