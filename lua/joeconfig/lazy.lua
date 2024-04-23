@@ -294,7 +294,14 @@ require('lazy').setup({
             "nvim-tree/nvim-web-devicons",
         },
         config = function()
-            require("nvim-tree").setup {}
+            vim.g.loaded_netrw = 1
+            vim.g.loaded_netwPlugin = 1
+            require("nvim-tree").setup({
+                view = {
+                    width = 50,
+                    side = "right"
+                }
+            })
         end,
     },
     {
