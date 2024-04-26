@@ -2,6 +2,9 @@
 vim.opt.nu = true
 vim.opt.relativenumber = false
 
+vim.opt.spell = true
+vim.opt.spelllang = "en_us"
+
 vim.g.have_nerd_font = true
 vim.opt.mouse = 'a'
 vim.opt.clipboard = 'unnamedplus'
