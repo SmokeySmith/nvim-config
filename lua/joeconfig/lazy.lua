@@ -57,6 +57,7 @@ require('lazy').setup({
             vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = '[F]ind [F]iles' })
             vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
             vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
+            vim.keymap.set('n', '<leader>sb', builtin.current_buffer_fuzzy_find, { desc = '[S]earch current [B]uffer' })
             vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
             vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
             vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
@@ -106,6 +107,8 @@ require('lazy').setup({
                     map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
                     -- Execute a code action, usually your cursor needs to be on top of an error
                     map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+
+                    map('<leader>cd', vim.diagnostic.open_float, '[D]iagnostic line')
                     -- Opens a popup that displays documentation about the word under your cursor
                     map('K', vim.lsp.buf.hover, 'Hover Documentation')
                     -- WARN: This is not Goto Definition, this is Goto Declaration.
