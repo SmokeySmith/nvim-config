@@ -259,24 +259,24 @@ require('lazy').setup({
             }
         end,
     },
-    {
-        "folke/tokyonight.nvim",
-        lazy = false,
-        priority = 1000,
-        opts = {},
-        init = function()
-            vim.cmd.colorscheme 'tokyonight-night'
-            vim.cmd.hi 'Comment gui=none'
-        end
-    },
     -- {
-    --     'rose-pine/neovim',
-    --     priority = 1000, -- Make sure to load this before all the other start plugins.
+    --     "folke/tokyonight.nvim",
+    --     lazy = false,
+    --     priority = 1000,
+    --     opts = {},
     --     init = function()
-    --         vim.cmd.colorscheme 'rose-pine-moon'
+    --         vim.cmd.colorscheme 'tokyonight-night'
     --         vim.cmd.hi 'Comment gui=none'
-    --     end,
+    --     end
     -- },
+    {
+        'rose-pine/neovim',
+        priority = 1000, -- Make sure to load this before all the other start plugins.
+        init = function()
+            vim.cmd.colorscheme 'rose-pine'
+            vim.cmd.hi 'Comment gui=none'
+        end,
+    },
 
 
     { -- Highlight, edit, and navigate code
