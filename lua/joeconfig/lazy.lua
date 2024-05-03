@@ -259,15 +259,24 @@ require('lazy').setup({
             }
         end,
     },
-
     {
-        'rose-pine/neovim',
-        priority = 1000, -- Make sure to load this before all the other start plugins.
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
         init = function()
-            vim.cmd.colorscheme 'rose-pine-moon'
+            vim.cmd.colorscheme 'tokyonight-night'
             vim.cmd.hi 'Comment gui=none'
-        end,
+        end
     },
+    -- {
+    --     'rose-pine/neovim',
+    --     priority = 1000, -- Make sure to load this before all the other start plugins.
+    --     init = function()
+    --         vim.cmd.colorscheme 'rose-pine-moon'
+    --         vim.cmd.hi 'Comment gui=none'
+    --     end,
+    -- },
 
 
     { -- Highlight, edit, and navigate code
@@ -348,7 +357,7 @@ require('lazy').setup({
         'nvim-lualine/lualine.nvim',
         dependencies = { 'nvim-tree/nvim-web-devicons' },
         config = function()
-            require('lualine').setup()
+            require('lualine').setup({})
         end
     }
 
