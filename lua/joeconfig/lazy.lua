@@ -311,7 +311,6 @@ require('lazy').setup({
             require("nvim-tree").setup({
                 view = {
                     width = 50,
-                    side = "right"
                 }
             })
         end,
@@ -359,6 +358,8 @@ require('lazy').setup({
         config = function()
             require('lualine').setup({})
         end
+    },
+    {
+        'github/copilot.vim'
     }
-
 })
