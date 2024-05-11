@@ -259,16 +259,6 @@ require('lazy').setup({
             }
         end,
     },
-    -- {
-    --     "folke/tokyonight.nvim",
-    --     lazy = false,
-    --     priority = 1000,
-    --     opts = {},
-    --     init = function()
-    --         vim.cmd.colorscheme 'tokyonight-night'
-    --         vim.cmd.hi 'Comment gui=none'
-    --     end
-    -- },
     {
         'rose-pine/neovim',
         priority = 1000, -- Make sure to load this before all the other start plugins.
