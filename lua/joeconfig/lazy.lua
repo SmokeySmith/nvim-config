@@ -138,18 +138,8 @@ require('lazy').setup({
                 clangd = {},
                 gopls = {},
                 tsserver = {},
-                lua_ls = {
-                    -- cmd = {...},
-                    -- filetypes = { ...},
-                    -- capabilities = {},
-                    settings = {
-                        Lua = {
-                            completion = {
-                                callSnippet = 'Replace',
-                            },
-                        },
-                    },
-                },
+                lua_ls = {},
+                eslint = {}
             }
             require('mason').setup()
 
@@ -171,9 +161,10 @@ require('lazy').setup({
     { -- Autoformat
         'stevearc/conform.nvim',
         lazy = false,
+        event = {"BufReadPre", "BufNewFile"},
         keys = {
             {
-                '<leader>f',
+                '<leader>mp',
                 function()
                     require('conform').format { async = true, lsp_fallback = true }
                 end,
@@ -183,13 +174,6 @@ require('lazy').setup({
         },
         opts = {
             notify_on_error = false,
-            -- format_on_save = function(bufnr)
-            --     local disable_filetypes = { c = true, cpp = true }
-            --     return {
-            --         timeout_ms = 500,
-            --         lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
-            --     }
-            -- end,
             formatters_by_ft = {
                 lua = { 'stylua' },
             },
@@ -258,6 +242,33 @@ require('lazy').setup({
                 },
             }
         end,
+    },
+    {
+        'mfussenegger/nvim-lint',
+        event = { 'BufReadPre', 'BufNewFile' },
+        config = function()
+            local lint = require 'lint'
+
+            lint.linters_by_ft = {
+                json = { 'jsonlint' },
+                javascript = { 'eslint'},
+                typescript = { 'eslint'},
+                javascriptreact = { 'eslint'},
+                typescriptreact = { 'eslint'},
+            }
+
+            local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true})
+
+            vim.api.nvim_create_autocmd({'BufEnter', 'BufWritePost', 'InsertLeave'}, {
+                group = lint_augroup,
+                callback = function ()
+                    lint.try_lint()
+                end
+            })
+            vim.keymap.set("n", "<leader>ll", function()
+                lint.try_lint()
+            end)
+        end
     },
     {
         'rose-pine/neovim',
@@ -349,6 +360,7 @@ require('lazy').setup({
             require('lualine').setup({})
         end
     },
+
     {
         'github/copilot.vim'
     }
