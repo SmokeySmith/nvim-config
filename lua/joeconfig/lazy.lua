@@ -135,11 +135,11 @@ require('lazy').setup({
 
             -- Enable the following language servers
             local servers = {
-                clangd = {},
                 gopls = {},
                 tsserver = {},
+                eslint={},
                 lua_ls = {
-                    -- cmd = {...},
+                    -- cmd = {}
                     -- filetypes = { ...},
                     -- capabilities = {},
                     settings = {
@@ -361,5 +361,8 @@ require('lazy').setup({
     },
     {
         'github/copilot.vim'
-    }
+    },
+
+    require 'joeconfig.plugins.lint',
+
 })
