@@ -6,7 +6,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-    'tpope/vim-sleuth',
+    { 'tpope/vim-sleuth' },
 
     { 'numToStr/Comment.nvim', opts = {} },
 
@@ -277,7 +277,6 @@ require('lazy').setup({
             vim.cmd.hi 'Comment gui=none'
         end,
     },
-
 
     { -- Highlight, edit, and navigate code
         'nvim-treesitter/nvim-treesitter',
