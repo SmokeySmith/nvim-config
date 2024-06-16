@@ -50,7 +50,7 @@ return {
                 local client = vim.lsp.get_client_by_id(event.data.client_id)
                 if client and client.server_capabilities.documentHighlightProvider then
                     vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-                        buffer = event.buf,
+                       buffer = event.buf,
                         callback = vim.lsp.buf.document_highlight,
                     })
 
@@ -70,6 +70,9 @@ return {
             clangd = {},
             gopls = {},
             tsserver = {},
+            -- eslint = {},
+            eslint_d = {},
+            jsonlint = {},
             lua_ls = {
                 -- cmd = {...},
                 -- filetypes = { ...},
