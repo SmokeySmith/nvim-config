@@ -17,8 +17,8 @@ return {
         end
     },
     -- enable at work
-    {
-        'github/copilot.vim'
-    }
+    -- {
+    --     'github/copilot.vim'
+    -- }
 
 }
