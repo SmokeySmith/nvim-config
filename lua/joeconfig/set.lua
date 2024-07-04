@@ -37,6 +37,9 @@ vim.opt.colorcolumn = "100"
 vim.g.mapleader = " "
 
 vim.opt.cursorline = true
+-- set undofile
+vim.o.undodir = '~/.config/nvim_user_data/undo'
+vim.o.undofile = true
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
