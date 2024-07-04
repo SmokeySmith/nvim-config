@@ -70,8 +70,8 @@ return {
             clangd = {},
             gopls = {},
             tsserver = {},
-            -- eslint = {},
-            eslint_d = {},
+            eslint = {},
+            -- eslint_d = {},
             jsonlint = {},
             lua_ls = {
                 -- cmd = {...},
