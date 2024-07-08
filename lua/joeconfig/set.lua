@@ -38,7 +38,15 @@ vim.g.mapleader = " "
 
 vim.opt.cursorline = true
 -- set undofile
-vim.o.undodir = '~/.config/nvim_user_data/undo'
+-- local function getUndoDir()
+--   if vim.fn.has('win32') == 1 then
+--     return '%AppData%/Local/nvim/nvim_user_data/undo'
+--   else
+--     return '.config/nvim_user_data/undo'
+--   end
+-- end
+--
+-- vim.o.undodir = getUndoDir()
 vim.o.undofile = true
 
 vim.api.nvim_create_autocmd('TextYankPost', {
