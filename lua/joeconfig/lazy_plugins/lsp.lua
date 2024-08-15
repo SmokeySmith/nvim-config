@@ -41,6 +41,10 @@ return {
                 map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
                 map('<leader>cd', vim.diagnostic.open_float, '[D]iagnostic line')
+
+                map('<leader>cf', function ()
+                    vim.cmd(":EslintFixAll")
+                end, '[C]ode fixAll')
                 -- Opens a popup that displays documentation about the word under your cursor
                 map('K', vim.lsp.buf.hover, 'Hover Documentation')
                 -- WARN: This is not Goto Definition, this is Goto Declaration.
