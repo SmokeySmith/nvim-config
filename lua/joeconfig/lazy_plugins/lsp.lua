@@ -73,7 +73,7 @@ return {
         local servers = {
             clangd = {},
             gopls = {},
-            tsserver = {},
+            ts_ls = {},
             eslint = {},
             -- eslint_d = {},
             jsonlint = {},

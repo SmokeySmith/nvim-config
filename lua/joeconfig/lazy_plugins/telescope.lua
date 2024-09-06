@@ -12,6 +12,15 @@ return {
     config = function()
         -- [[ Configure Telescope ]]
         require('telescope').setup {
+            defaults = {
+                preview = {
+                    filesize_hook = function (filepath, bufnr, opts)
+                        local max_bytes = 100000
+                        local cmd = {"head", "-c", max_bytes, filepath}
+                        require('telescope.previewers.utils').job_maker(cmd, bufnr, opts)
+                    end
+                }
+            },
             extensions = {
                 ['ui-select'] = {
                     require('telescope.themes').get_dropdown(),
