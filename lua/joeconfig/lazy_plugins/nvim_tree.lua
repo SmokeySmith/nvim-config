@@ -11,6 +11,10 @@ return {
         require("nvim-tree").setup({
             view = {
                 width = 40,
+                float = {
+                    enable = true,
+                    quit_on_focus_loss = false,
+                },
             }
         })
     end,
