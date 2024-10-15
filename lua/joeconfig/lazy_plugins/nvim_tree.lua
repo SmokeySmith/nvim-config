@@ -10,7 +10,7 @@ return {
         vim.g.loaded_netwPlugin = 1
         require("nvim-tree").setup({
             view = {
-                width = 40,
+                adaptive_size = true,
                 float = {
                     enable = true,
                     quit_on_focus_loss = false,
