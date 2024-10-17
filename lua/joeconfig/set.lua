@@ -9,8 +9,8 @@ vim.g.have_nerd_font = true
 vim.opt.mouse = 'a'
 vim.opt.clipboard = 'unnamedplus'
 
-vim.opt.tabstop = 8
-vim.opt.softtabstop = 8
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 0
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
