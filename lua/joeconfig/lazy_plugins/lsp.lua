@@ -74,7 +74,7 @@ return {
             clangd = {},
             gopls = {},
             ts_ls = {},
-            eslint = {},
+            -- eslint = {},
             -- eslint_d = {},
             jsonlint = {},
             lua_ls = {
