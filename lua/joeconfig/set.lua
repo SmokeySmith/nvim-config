@@ -37,6 +37,10 @@ vim.opt.colorcolumn = "100"
 vim.g.mapleader = " "
 
 vim.opt.cursorline = true
+
+vim.o.foldmethod = "indent"
+-- don't start with folds closed
+vim.o.foldenable = false
 -- set undofile
 -- local function getUndoDir()
 --   if vim.fn.has('win32') == 1 then
