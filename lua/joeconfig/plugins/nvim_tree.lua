@@ -8,13 +8,16 @@ return {
     config = function()
         vim.g.loaded_netrw = 1
         vim.g.loaded_netwPlugin = 1
+
+        vim.keymap.set("n", "<leader>e", function() vim.cmd(":NvimTreeFindFileToggle") end)
+
         require("nvim-tree").setup({
             view = {
                 adaptive_size = true,
-                float = {
-                    enable = true,
-                    quit_on_focus_loss = false,
-                },
+                -- float = {
+                --     enable = true,
+                --     quit_on_focus_loss = false,
+                -- },
             }
         })
     end,

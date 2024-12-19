@@ -1,3 +1,3 @@
 require("joeconfig.set")
-require("joeconfig.init_lazy")
+require("joeconfig.lazy")
 require("joeconfig.keymap")

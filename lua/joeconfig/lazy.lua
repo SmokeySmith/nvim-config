@@ -6,6 +6,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-    spec = "joeconfig.lazy_plugins",
+    spec = "joeconfig.plugins",
     change_detection = { notify = false }
 })
+
+vim.keymap.set("n", "<leader>ll", function() vim.cmd(":Lazy") end)
+vim.keymap.set("n", "<leader>ls", function() vim.cmd(":Lazy sync") end)
+vim.keymap.set("n", "<leader>lh", function() vim.cmd(":Lazy health") end)
