@@ -5,7 +5,8 @@ return {
     dependencies = {
         'nvim-lua/plenary.nvim',
         { 'nvim-telescope/telescope-ui-select.nvim' },
-
+        -- make go fast
+        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
         -- Useful for getting pretty icons, but requires a Nerd Font.
         { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
@@ -22,6 +23,12 @@ return {
                 }
             },
             extensions = {
+                fzf = {
+                    fuzzy = true,
+                    override_generic_sorter = true,
+                    override_file_sorter = true,
+                    case_mode = "smart_case",
+                },
                 ['ui-select'] = {
                     require('telescope.themes').get_dropdown(),
                 },
