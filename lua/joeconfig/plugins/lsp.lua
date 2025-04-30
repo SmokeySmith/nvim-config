@@ -51,7 +51,7 @@ return {
                 local client = vim.lsp.get_client_by_id(event.data.client_id)
                 if client and client.server_capabilities.documentHighlightProvider then
                     vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-                       buffer = event.buf,
+                        buffer = event.buf,
                         callback = vim.lsp.buf.document_highlight,
                     })
 
@@ -71,6 +71,7 @@ return {
             clangd = {},
             gopls = {},
             ts_ls = {},
+            denols = {},
             -- eslint = {},
             -- eslint_d = {},
             jsonlint = {},
@@ -92,13 +93,42 @@ return {
         local ensure_installed = vim.tbl_keys(servers or {})
         require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
+        local lspconfig = require('lspconfig')
+
         require('mason-lspconfig').setup {
             handlers = {
                 function(server_name)
                     local server = servers[server_name] or {}
 
                     server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-                    require('lspconfig')[server_name].setup(server)
+
+                    if server_name == 'denols' then
+                        lspconfig[server_name].setup {
+                            root_dir = lspconfig.util.root_pattern('deno.json', 'deno.jsonc'),
+                            init_options = {
+                                lint_options = {
+                                    lint = true,
+                                    unstable = false
+                                },
+                                capabilities = server.capabilities
+                            }
+                        }
+                    elseif server_name == 'ts_ls' then
+                        -- Prevent tsserver from attaching in Deno projects
+                        lspconfig[server_name].setup {
+                            root_dir = function(fname)
+                                if lspconfig.util.root_pattern("deno.json", "deno.jsonc")(fname) then
+                                    return nil -- Don't attach if it's a Deno project
+                                else
+                                    return lspconfig.util.root_pattern("tsconfig.json", "jsconfig.json", ".git")(fname)
+                                end
+                            end,
+                            capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {}),
+                            -- Add any other tsserver specific configurations here
+                        }
+                    else
+                        lspconfig[server_name].setup(server)
+                    end
                 end,
             },
         }
