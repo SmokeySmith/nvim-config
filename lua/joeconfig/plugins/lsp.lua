@@ -113,19 +113,6 @@ return {
                                 capabilities = server.capabilities
                             }
                         }
-                    elseif server_name == 'ts_ls' then
-                        -- Prevent tsserver from attaching in Deno projects
-                        lspconfig[server_name].setup {
-                            root_dir = function(fname)
-                                if lspconfig.util.root_pattern("deno.json", "deno.jsonc")(fname) then
-                                    return nil -- Don't attach if it's a Deno project
-                                else
-                                    return lspconfig.util.root_pattern("tsconfig.json", "jsconfig.json", ".git")(fname)
-                                end
-                            end,
-                            capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {}),
-                            -- Add any other tsserver specific configurations here
-                        }
                     else
                         lspconfig[server_name].setup(server)
                     end
