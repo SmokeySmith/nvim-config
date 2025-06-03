@@ -8,14 +8,14 @@ return {
     --     end,
     --     opts = {},
     -- }
-    {
-        'rose-pine/neovim',
-        priority = 1000, -- Make sure to load this before all the other start plugins.
-        init = function()
-            vim.cmd.colorscheme 'rose-pine'
-            vim.cmd.hi 'Comment gui=none'
-        end,
-    },
+    -- {
+    --     'rose-pine/neovim',
+    --     priority = 1000, -- Make sure to load this before all the other start plugins.
+    --     init = function()
+    --         vim.cmd.colorscheme 'rose-pine'
+    --         vim.cmd.hi 'Comment gui=none'
+    --     end,
+    -- },
 
     -- {
     --     'morhetz/gruvbox',
@@ -57,14 +57,14 @@ return {
     --     end,
     -- }
 
-    -- {
-    --     "EdenEast/nightfox.nvim",
-    --     lazy = false, -- make sure we load this during startup if it is your main colorscheme
-    --     priority = 1000, -- Make sure to load this before all the other start plugins.
-    --     init = function()
-    --         vim.cmd.colorscheme 'carbonfox'
-    --     end,
-    -- }
+    {
+        "EdenEast/nightfox.nvim",
+        lazy = false, -- make sure we load this during startup if it is your main colorscheme
+        priority = 1000, -- Make sure to load this before all the other start plugins.
+        init = function()
+            vim.cmd.colorscheme 'nordfox'
+        end,
+    }
     -- {
     --     'RRethy/base16-nvim',
     --     priority = 1000, -- Make sure to load this before all the other start plugins.
