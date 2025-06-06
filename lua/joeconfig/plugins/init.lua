@@ -9,9 +9,4 @@ return {
             require("ibl").setup()
         end
     },
-    -- enable at work
-    -- {
-    --     'github/copilot.vim'
-    -- }
-
 }
