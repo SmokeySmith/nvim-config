@@ -18,6 +18,4 @@ vim.keymap.set("n", "<C-l>", "<C-w><C-l>")
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>")
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>")
 
--- vim.keymap.set("n", "<leader>bd", function() vim.cmd(":bdelete") end)
--- vim.keymap.set("n", "<leader>bq", function() vim.cmd(":q") end)
 vim.keymap.set("n", "<leader>qq", function() vim.cmd(":quitall") end)
