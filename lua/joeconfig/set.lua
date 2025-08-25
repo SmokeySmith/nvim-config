@@ -62,10 +62,10 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 vim.g.copilot_enabled = false
-local projectfile = vim.fn.getcwd() .. '/project.godot'
-if projectfile then
-  vim.fn.serverstart './godohost'
-end
+-- local projectfile = vim.fn.getcwd() .. '/project.godot'
+-- if projectfile then
+--   vim.fn.serverstart './godohost'
+-- end
 -- vim.api.nvim_create_autocmd('BufEnter', {
 --   pattern = "*.ts,*tsx,*.js,*.jsx",
 --   callback = function()

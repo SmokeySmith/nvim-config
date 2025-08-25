@@ -8,7 +8,7 @@ return {
 
         -- Useful status updates for LSP.
         -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-        { 'j-hui/fidget.nvim',       opts = {} },
+        { 'j-hui/fidget.nvim', opts = {} },
 
         'saghen/blink.cmp',
     },
@@ -133,14 +133,41 @@ return {
         -- capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
         local capabilities = require('blink.cmp').get_lsp_capabilities()
-        require('lspconfig').gdscript.setup(capabilities)
+        -- require('lspconfig').gdscript.setup(capabilities)
 
+        -- local vue_typescript_plugin_path = os.getenv('HOME') ..
+        --     '/.nvm/versions/node/v22.14.0/lib/node_modules/@vue/typescript-plugin'
+        local data_path = vim.fn.stdpath('data')
+        local vue_typescript_plugin_path = data_path ..
+            '/mason/packages/vue-language-server/node_modules/@vue/language-server'
         -- Enable the following language servers
         local servers = {
             -- clangd = {},
             -- gopls = {},
-            ts_ls = {},
-            -- denols = {},
+            volar = {
+                -- don't attack to vue files as we're using it as an extension of the ts_ls instead
+                filetypes = {},
+            },
+            ts_ls = {
+                root_dir = require("lspconfig").util.root_pattern({ "package.json", "tsconfig.json" }),
+                single_file_support = false,
+                settings = {},
+                filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
+                init_options = {
+                    plugins = {
+                        {
+                            name = "@vue/typescript-plugin",
+                            location = vue_typescript_plugin_path,
+                            languages = { "vue" },
+                        },
+                    },
+                },
+            },
+            denols = {
+                root_dir = require("lspconfig").util.root_pattern({ "deno.json", "deno.jsonc" }),
+                single_file_support = false,
+                settings = {},
+            },
             -- eslint = {},
             -- eslint_d = {},
             -- jsonlint = {},
@@ -170,21 +197,29 @@ return {
                     local server = servers[server_name] or {}
 
                     server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-                    require('lspconfig')[server_name].setup(server)
-                    -- if server_name == 'denols' then
-                    --     lspconfig[server_name].setup {
-                    --         root_dir = lspconfig.util.root_pattern('deno.json', 'deno.jsonc'),
+                    -- if server_name == 'ts_ls' then
+                    --     local data_path = vim.fn.stdpath('data')
+                    --     local vue_typescript_plugin_path = data_path ..
+                    --         '/mason/packages/vue-language-server/node_modules/@vue/language-server'
+                    --
+                    --     require('lspconfig')['ts_ls'].setup({
+                    --         filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
                     --         init_options = {
-                    --             lint_options = {
-                    --                 lint = true,
-                    --                 unstable = false
+                    --             plugins = {
+                    --                 {
+                    --                     name = "@vue/typescript-plugin",
+                    --                     location = vue_typescript_plugin_path,
+                    --                     languages = { "vue" },
+                    --                 },
                     --             },
-                    --             capabilities = server.capabilities
-                    --         }
-                    --     }
-                    -- else
-                    -- end
-                end,
+                    --         },
+                    --         capabilities = capabilities
+                    --     })
+                    -- quick hack to ensure that volar isn't added to vue pages instead defer to ts_ls
+                    if server_name ~= 'volar' then
+                        require('lspconfig')[server_name].setup(server)
+                    end
+                end
             },
         }
     end
