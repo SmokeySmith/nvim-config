@@ -61,7 +61,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-vim.g.copilot_enabled = false
+vim.g.copilot_enabled = true
+vim.g.copilot_no_tab_map = true
+vim.api.nvim_set_keymap("i", "<C-c>", 'copilot#Accept("<CR>")', { expr = true, silent = true, noremap = true })
 -- local projectfile = vim.fn.getcwd() .. '/project.godot'
 -- if projectfile then
 --   vim.fn.serverstart './godohost'
