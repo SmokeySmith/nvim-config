@@ -63,6 +63,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 vim.g.copilot_enabled = true
 vim.g.copilot_no_tab_map = true
+-- vim.g.copilot_model = 'gpt-5.2'
 vim.api.nvim_set_keymap("i", "<C-c>", 'copilot#Accept("<CR>")', { expr = true, silent = true, noremap = true })
 -- local projectfile = vim.fn.getcwd() .. '/project.godot'
 -- if projectfile then
