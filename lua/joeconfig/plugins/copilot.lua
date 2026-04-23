@@ -1,6 +1,5 @@
 return {
   {
-    -- i've disabled the autocompletion because i find it very annoying but i need it for chat
     'github/copilot.vim'
   },
   {

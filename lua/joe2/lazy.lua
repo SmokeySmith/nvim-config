@@ -7,7 +7,7 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup({ import = "joeconfig/plugins"
+require('lazy').setup({ import = "joe2/plugins"
 },
 {
     change_detection = { notify = false }
