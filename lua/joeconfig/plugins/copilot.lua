@@ -1,6 +1,10 @@
 return {
   {
-    'github/copilot.vim'
+    'github/copilot.vim',
+    config = function()
+      -- Set the default model for copilot.vim
+      vim.g.copilot_model = 'claude-sonnet-4' -- You can change this to your preferred model
+    end,
   },
   -- {
   --   "CopilotC-Nvim/CopilotChat.nvim",

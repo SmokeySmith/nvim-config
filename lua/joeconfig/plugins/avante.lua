@@ -1,7 +1,7 @@
 return {
 	"yetone/avante.nvim",
 	build = vim.fn.has("win32") ~= 0 and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
-		or "make",
+	    or "make",
 	event = "VeryLazy",
 	version = false, -- Never set this value to "*"! Never!
 	opts = {
@@ -11,14 +11,14 @@ return {
 		-- for example
 		provider = "claude",
 		providers = {
-            copilot = {
-                model = "claude-sonnet-4",
-                timeout = 30000, -- Timeout in milliseconds
+			copilot = {
+				model = "claude-sonnet-4",
+				timeout = 30000, -- Timeout in milliseconds
 				extra_request_body = {
 					temperature = 0.75,
 					max_tokens = 20480,
 				},
-            },
+			},
 			-- claude = {
 			-- 	endpoint = "https://api.anthropic.com",
 			-- 	model = "claude-sonnet-4-20250514",
