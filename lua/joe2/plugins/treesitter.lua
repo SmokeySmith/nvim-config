@@ -31,7 +31,7 @@ return { -- Highlight, edit, and navigate code
 		end
 
 		local available_parsers = require("nvim-treesitter").get_available()
-		vim.api.nvim_create_autocmd("FileType", {
+		vim.api.nvim_create_autocmd({ "FileType", "BufWinEnter" }, {
 			callback = function(args)
 				local buf, filetype = args.buf, args.match
 
