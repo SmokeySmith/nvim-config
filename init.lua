@@ -1,1 +1,1 @@
-require("joeconfig")
+require("joe2")

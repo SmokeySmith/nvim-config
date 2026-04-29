@@ -64,23 +64,3 @@ vim.g.copilot_enabled = true
 vim.g.copilot_no_tab_map = true
 vim.api.nvim_set_keymap("i", "<C-c>", 'copilot#Accept("<CR>")', { expr = true, silent = true, noremap = true })
 vim.opt.laststatus = 3
-
--- vim.api.nvim_create_autocmd('BufEnter', {
---   pattern = "*.ts,*tsx,*.js,*.jsx",
---   callback = function()
---     local bufnr = vim.api.nvim_get_current_buf()
---     local clients = vim.lsp.get_clients({ bufnr = bufnr })
---
---     local is_deno_project = vim.fn.filereadable("deno.json") == 1 or
---         vim.fn.filereadable("deno.json") == 1
---
---     if is_deno_project then
---       for _, c in ipairs(clients) do
---         if c.name == 'ts_ls' or c.name == 'tsserver' then
---           vim.lsp.buf_detach_client(bufnr, c.id)
---           vim.notify('Detached ts_ls inside deno project', vim.log.levels.INFO)
---         end
---       end
---     end
---   end
--- })
