@@ -10,8 +10,27 @@ vim.opt.encoding = "utf-8"
 
 vim.g.have_nerd_font = true
 vim.opt.mouse = 'a'
--- vim.opt.clipboard = 'unnamedplus'
-vim.opt.clipboard:append("unnamedplus")
+
+-- if windows clipboard breaks again
+-- vim.g.clipboard = {
+--   name = 'WslClipboard',
+--   copy = {
+--     ['+'] = 'clip.exe',
+--     ['*'] = 'clip.exe',
+--   },
+--   paste = {
+--     ['+'] = 'powershell.exe -c [Console]::Out.Write((Get-Clipboard -Raw).ToString().Replace("`r", ""))',
+--     ['*'] = 'powershell.exe -c [Console]::Out.Write((Get-Clipboard -Raw).ToString().Replace("`r", ""))',
+--     ['+'] = 'powershell.exe -c [Console]::Out.Write((Get-Clipboard -Raw).ToString().Replace("`r", ""))',
+--     ['*'] = 'powershell.exe -c [Console]::Out.Write((Get-Clipboard -Raw).ToString().Replace("`r", ""))',
+--   },
+--   cache_enabled = 0,
+-- }
+--   },
+--   cache_enabled = 0,
+-- }
+
+vim.opt.clipboard = 'unnamedplus'
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4

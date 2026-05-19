@@ -22,17 +22,16 @@ return {
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 
 			{ "j-hui/fidget.nvim", opts = {} },
-			{ "https://git.sr.ht/~whynothugo/lsp_lines.nvim" },
-			-- { "elixir-tools/elixir-tools.nvim" },
-			{
-				"dmmulroy/tsc.nvim",
-				config = function()
-					require("tsc").setup({
-						run_as_monorepo = true,
-					})
-				end,
-			},
-
+			-- { "https://git.sr.ht/~whynothugo/lsp_lines.nvim" },
+			-- {
+			-- 	"dmmulroy/tsc.nvim",
+			-- 	config = function()
+			-- 		require("tsc").setup({
+			-- 			run_as_monorepo = true,
+			-- 		})
+			-- 	end,
+			-- },
+			--
 			{
 				"pmizio/typescript-tools.nvim",
 				dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
@@ -40,9 +39,6 @@ return {
 
 			-- Autoformatting
 			"stevearc/conform.nvim",
-
-			-- Schema information
-			"b0o/SchemaStore.nvim",
 		},
 		config = function()
 			local capabilities = nil
@@ -76,42 +72,30 @@ return {
 					-- },
 				},
 				rust_analyzer = true,
-				svelte = true,
+				-- svelte = true,
 				pyright = true,
-
 				-- Enabled biome formatting, turn off all the other ones generally
-				biome = true,
-				astro = true,
+				-- biome = true,
+				-- astro = true,
 				-- ts_ls = {
-				--   root_dir = require("lspconfig").util.root_pattern "package.json",
-				--   single_file = false,
-				--   server_capabilities = {
-				--     documentFormattingProvider = false,
-				--   },
+				-- 	root_dir = require("lspconfig").util.root_pattern("package.json"),
 				-- },
-				-- vtsls = {
-				--   server_capabilities = {
-				--     documentFormattingProvider = false,
-				--   },
+				-- denols = {
+				-- 	filetypes = { "javascriptreact", "javascript", "typescriptreact", "typescript" },
+				-- 	single_file_support = false,
+				-- 	settings = {},
 				-- },
-				-- denols = true,
 				jsonls = {
 					server_capabilities = {
 						documentFormattingProvider = false,
 					},
 					settings = {
 						json = {
-							schemas = require("schemastore").json.schemas(),
+							-- schemas = require("schemastore").json.schemas(),
 							validate = { enable = true },
 						},
 					},
 				},
-
-				-- cssls = {
-				--   server_capabilities = {
-				--     documentFormattingProvider = false,
-				--   },
-				-- },
 
 				yamlls = {
 					settings = {
@@ -120,22 +104,16 @@ return {
 								enable = false,
 								url = "",
 							},
-							-- schemas = require("schemastore").yaml.schemas(),
 						},
 					},
 				},
 
 				clangd = {
-					-- cmd = { "clangd", unpack(require("custom.clangd").flags) },
-					-- TODO: Could include cmd, but not sure those were all relevant flags.
-					--    looks like something i would have added while i was floundering
 					init_options = { clangdFileStatus = true },
-
 					filetypes = { "c" },
 				},
+				omnisharp = true,
 			}
-
-			-- require("ocaml").setup()
 
 			local servers_to_install = vim.tbl_filter(function(key)
 				local t = servers[key]
@@ -151,7 +129,8 @@ return {
 				"stylua",
 				"lua_ls",
 				"delve",
-				-- "tailwind-language-server",
+				"omnisharp",
+				-- "denols",
 			}
 
 			vim.list_extend(ensure_installed, servers_to_install)
@@ -178,10 +157,6 @@ return {
 
 				vim.lsp.enable(name)
 			end
-
-			local disable_semantic_tokens = {
-				-- lua = true,
-			}
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				callback = function(args)
@@ -210,11 +185,6 @@ return {
 					vim.keymap.set("n", "<leader>ww", function()
 						builtin.diagnostics({ root_dir = true })
 					end, { buffer = 0 })
-
-					local filetype = vim.bo[bufnr].filetype
-					if disable_semantic_tokens[filetype] then
-						client.server_capabilities.semanticTokensProvider = nil
-					end
 
 					-- Override server capabilities
 					if settings.server_capabilities then
@@ -267,17 +237,14 @@ return {
 				},
 			})
 
-			require("lsp_lines").setup()
-			vim.diagnostic.config({ virtual_text = true, virtual_lines = false })
+			vim.lsp.config("gdscript", {
+				-- cmd = { "gdscript-language-server" },
+                cmd = vim.lsp.rpc.connect('0.0.0.0', 6005),
+				filetypes = { "gd", "gdscript" },
+				root_dir = vim.fs.root(0, { "project.godot" }),
+			})
 
-			vim.keymap.set("", "<leader>l", function()
-				local config = vim.diagnostic.config() or {}
-				if config.virtual_text then
-					vim.diagnostic.config({ virtual_text = false, virtual_lines = true })
-				else
-					vim.diagnostic.config({ virtual_text = true, virtual_lines = false })
-				end
-			end, { desc = "Toggle lsp_lines" })
+			vim.lsp.enable("gdscript")
 		end,
 	},
 }
