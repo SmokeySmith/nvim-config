@@ -5,6 +5,9 @@ return {
     lazy = false,
     config = function()
       require("oil").setup {
+        win_options = {
+            signcolumn = "yes:2",
+        },
         columns = { "icon" },
         keymaps = {
           ["<C-h>"] = false,
