@@ -64,22 +64,18 @@ return {
 						},
 					},
 				},
-				glsl_analyzer = true,
 				lua_ls = {
 					cmd = { "lua-language-server" },
-					-- server_capabilities = {
-					--   semanticTokensProvider = vim.NIL,
-					-- },
 				},
 				rust_analyzer = true,
-				-- svelte = true,
 				pyright = true,
 				-- Enabled biome formatting, turn off all the other ones generally
-				-- biome = true,
-				-- astro = true,
-				-- ts_ls = {
-				-- 	root_dir = require("lspconfig").util.root_pattern("package.json"),
-				-- },
+				ts_ls = {
+					filetypes = { "javascriptreact", "typescriptreact", "javascript", "typescript" },
+					-- root_dir = require("lspconfig").util.root_pattern("package.json"),
+					single_file_support = false,
+					settings = {},
+				},
 				-- denols = {
 				-- 	filetypes = { "javascriptreact", "javascript", "typescriptreact", "typescript" },
 				-- 	single_file_support = false,
@@ -110,7 +106,7 @@ return {
 
 				clangd = {
 					init_options = { clangdFileStatus = true },
-					filetypes = { "c" },
+					filetypes = { "c", "cpp", "h" },
 				},
 				omnisharp = true,
 			}
@@ -126,6 +122,7 @@ return {
 
 			require("mason").setup()
 			local ensure_installed = {
+				"ts_ls",
 				"stylua",
 				"lua_ls",
 				"delve",
@@ -200,46 +197,46 @@ return {
 				end,
 			})
 
-			require("typescript-tools").setup({
-				settings = {
-					-- Performance: separate diagnostic server for large projects
-					separate_diagnostic_server = true,
-					-- When to publish diagnostics
-					publish_diagnostic_on = "insert_leave",
-					-- JSX auto-closing tags
-					jsx_close_tag = {
-						enable = true,
-						filetypes = { "javascriptreact", "typescriptreact" },
-					},
-					tsserver_file_preferences = {
-						includeInlayParameterNameHints = "all",
-						includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-						includeInlayVariableTypeHints = true,
-						includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-						includeInlayPropertyDeclarationTypeHints = true,
-						includeInlayFunctionParameterTypeHints = true,
-						includeInlayEnumMemberValueHints = true,
-						includeInlayFunctionLikeReturnTypeHints = true,
-						-- Enable auto imports
-						includeCompletionsForModuleExports = true,
-						includeCompletionsForImportStatements = true,
-					},
-
-					tsserver_format_options = {
-						insertSpaceAfterOpeningAndBeforeClosingEmptyBraces = true,
-						semicolons = "insert",
-					},
-					complete_function_calls = true,
-					include_completions_with_insert_text = true,
-					code_lens = "off",
-					disable_member_code_lens = true,
-					tsserver_max_memory = 12288,
-				},
-			})
+			-- require("typescript-tools").setup({
+			-- 	settings = {
+			-- 		-- Performance: separate diagnostic server for large projects
+			-- 		separate_diagnostic_server = true,
+			-- 		-- When to publish diagnostics
+			-- 		publish_diagnostic_on = "insert_leave",
+			-- 		-- JSX auto-closing tags
+			-- 		jsx_close_tag = {
+			-- 			enable = true,
+			-- 			filetypes = { "javascriptreact", "typescriptreact" },
+			-- 		},
+			-- 		tsserver_file_preferences = {
+			-- 			includeInlayParameterNameHints = "all",
+			-- 			includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+			-- 			includeInlayVariableTypeHints = true,
+			-- 			includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+			-- 			includeInlayPropertyDeclarationTypeHints = true,
+			-- 			includeInlayFunctionParameterTypeHints = true,
+			-- 			includeInlayEnumMemberValueHints = true,
+			-- 			includeInlayFunctionLikeReturnTypeHints = true,
+			-- 			-- Enable auto imports
+			-- 			includeCompletionsForModuleExports = true,
+			-- 			includeCompletionsForImportStatements = true,
+			-- 		},
+			--
+			-- 		tsserver_format_options = {
+			-- 			insertSpaceAfterOpeningAndBeforeClosingEmptyBraces = true,
+			-- 			semicolons = "insert",
+			-- 		},
+			-- 		complete_function_calls = true,
+			-- 		include_completions_with_insert_text = true,
+			-- 		code_lens = "off",
+			-- 		disable_member_code_lens = true,
+			-- 		tsserver_max_memory = 12288,
+			-- 	},
+			-- })
 
 			vim.lsp.config("gdscript", {
 				-- cmd = { "gdscript-language-server" },
-                cmd = vim.lsp.rpc.connect('0.0.0.0', 6005),
+				cmd = vim.lsp.rpc.connect("0.0.0.0", 6005),
 				filetypes = { "gd", "gdscript" },
 				root_dir = vim.fs.root(0, { "project.godot" }),
 			})
