@@ -17,13 +17,19 @@ return {
     ---@module 'blink.cmp'
     opts = {
       keymap = {
-        -- <C-y> accepts, <C-n>/<C-p> cycle, <Tab> jumps snippet placeholders.
-        preset = "default",
+        -- <Tab> selects+accepts (or jumps snippet placeholders if one's active),
+        -- <S-Tab> selects prev, arrow keys / <C-n>/<C-p> still cycle, <C-y> accepts.
+        preset = "super-tab",
         ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
       },
       appearance = { nerd_font_variant = "mono" },
       completion = {
-        accept = { auto_brackets = { enabled = true } },
+        accept = {
+          auto_brackets = { enabled = true },
+          -- gopls resolves auto-import edits async via completionItem/resolve;
+          -- the 100ms default is too short, so quick accepts drop the import.
+          resolve_timeout_ms = 500,
+        },
         documentation = { auto_show = true, auto_show_delay_ms = 200 },
         ghost_text = { enabled = false },
         list = { selection = { preselect = false, auto_insert = true } },
