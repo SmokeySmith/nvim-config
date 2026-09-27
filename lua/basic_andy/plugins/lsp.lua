@@ -30,6 +30,13 @@ return {
       -- values are config overrides merged over the lspconfig defaults.
       local servers = {
         bashls = {},
+        clangd = {
+          -- Formatting is handled by conform's clang-format, not clangd.
+          on_attach = function(client)
+            client.server_capabilities.documentFormattingProvider = false
+            client.server_capabilities.documentRangeFormattingProvider = false
+          end,
+        },
         cssls = {},
         html = {},
         jsonls = {},
@@ -79,6 +86,7 @@ return {
           "prettierd",
           "shfmt",
           "goimports",
+          "clang-format",
         },
         run_on_start = true,
       })
