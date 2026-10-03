@@ -52,19 +52,19 @@ Leader is `<space>`. Press `<leader>` and pause to let which-key list things.
 
 ### Core
 
-| Key | Action |
-| --- | --- |
-| `<Esc>` | clear search highlight |
-| `<C-h/j/k/l>` | move between windows |
-| `<C-arrows>` | resize window |
-| `<S-h>` / `<S-l>` | previous / next buffer |
-| `<leader>w` / `<leader>q` | write / quit |
-| `<leader>bd` | delete buffer |
-| `J` / `K` (visual) | move selection up/down, reindenting |
-| `<leader>p` (visual) | paste over selection without yanking it |
-| `<leader>d` | delete without yanking |
-| `-` | open parent directory in oil |
-| `<leader>l` | `:Lazy` |
+| Key                       | Action                                  |
+| ------------------------- | --------------------------------------- |
+| `<Esc>`                   | clear search highlight                  |
+| `<C-h/j/k/l>`             | move between windows                    |
+| `<C-arrows>`              | resize window                           |
+| `<S-h>` / `<S-l>`         | previous / next buffer                  |
+| `<leader>w` / `<leader>q` | write / quit                            |
+| `<leader>bd`              | delete buffer                           |
+| `J` / `K` (visual)        | move selection up/down, reindenting     |
+| `<leader>p` (visual)      | paste over selection without yanking it |
+| `<leader>d`               | delete without yanking                  |
+| `-`                       | open parent directory in oil            |
+| `<leader>l`               | `:Lazy`                                 |
 
 ### Find (telescope)
 

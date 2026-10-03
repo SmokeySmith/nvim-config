@@ -9,7 +9,7 @@ local opt = vim.opt
 
 -- UI
 opt.number = true
-opt.relativenumber = true
+opt.relativenumber = false
 opt.signcolumn = "yes"
 opt.cursorline = true
 opt.termguicolors = true
@@ -70,18 +70,18 @@ opt.virtualedit = "block"
 -- Diagnostics: virtual text off, virtual lines on the current line only, so
 -- long messages don't shove code around.
 vim.diagnostic.config({
-  severity_sort = true,
-  underline = true,
-  update_in_insert = false,
-  virtual_text = false,
-  virtual_lines = { current_line = true },
-  float = { border = "rounded", source = "if_many" },
-  signs = vim.g.have_nerd_font and {
-    text = {
-      [vim.diagnostic.severity.ERROR] = "󰅚 ",
-      [vim.diagnostic.severity.WARN] = "󰀪 ",
-      [vim.diagnostic.severity.INFO] = "󰋽 ",
-      [vim.diagnostic.severity.HINT] = "󰌶 ",
-    },
-  } or true,
+	severity_sort = true,
+	underline = true,
+	update_in_insert = false,
+	virtual_text = false,
+	virtual_lines = { current_line = true },
+	float = { border = "rounded", source = "if_many" },
+	signs = vim.g.have_nerd_font and {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "󰅚 ",
+			[vim.diagnostic.severity.WARN] = "󰀪 ",
+			[vim.diagnostic.severity.INFO] = "󰋽 ",
+			[vim.diagnostic.severity.HINT] = "󰌶 ",
+		},
+	} or true,
 })
