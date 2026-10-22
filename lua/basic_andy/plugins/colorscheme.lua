@@ -20,25 +20,25 @@ return {
 	-- -- call above (or just `:colorscheme catppuccin`) to try them.
 	-- { "catppuccin/nvim", name = "catppuccin", lazy = true },
 	-- { "rebelot/kanagawa.nvim", lazy = true },
-	-- {
-	-- 	"scottmckendry/cyberdream.nvim",
-	-- 	lazy = false,
-	-- 	priority = 1000,
-	-- 	opts = {
-	-- 		variant = "muted",
-	-- 	},
-	-- 	config = function(_, opts)
-	-- 		require("cyberdream").setup(opts)
-	-- 		vim.cmd.colorscheme("cyberdream")
-	-- 	end,
-	-- },
-	---- lua/plugins/rose-pine.lua
 	{
-		"rose-pine/neovim",
-		name = "rose-pine",
+		"scottmckendry/cyberdream.nvim",
+		lazy = false,
 		priority = 1000,
-		config = function()
-			vim.cmd("colorscheme rose-pine")
+		opts = {
+			variant = "light",
+		},
+		config = function(_, opts)
+			require("cyberdream").setup(opts)
+			vim.cmd.colorscheme("cyberdream")
 		end,
 	},
+	-- lua/plugins/rose-pine.lua
+	-- {
+	-- 	"rose-pine/neovim",
+	-- 	name = "rose-pine",
+	-- 	priority = 1000,
+	-- 	config = function()
+	-- 		vim.cmd("colorscheme rose-pine")
+	-- 	end,
+	-- },
 }
