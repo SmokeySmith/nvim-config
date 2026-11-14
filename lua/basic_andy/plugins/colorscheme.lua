@@ -41,4 +41,22 @@ return {
 	-- 		vim.cmd("colorscheme rose-pine")
 	-- 	end,
 	-- },
+	---- lazy.nvim
+	{
+		"miikanissi/modus-themes.nvim",
+		priority = 1000,
+		config = function()
+			require("modus-themes").setup({
+				style = "modus_operandi",
+				variant = "tinted", -- try "tinted" if pure white feels glary
+				styles = {
+					comments = { italic = false },
+					keywords = { italic = false, bold = true },
+					functions = {},
+					variables = {},
+				},
+			})
+			vim.cmd("colorscheme modus_operandi")
+		end,
+	},
 }
